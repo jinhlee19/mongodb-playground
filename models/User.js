@@ -1,8 +1,8 @@
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
 
-const UserSchema = new Schema(
+const UserSchema = new mongoose.Schema(
 	{
-		username: { type: String, require: true },
+		username: { type: String, require: true, unique: true },
 		name: {
 			first: { type: String, require: true },
 			last: { type: String, require: true },
@@ -13,5 +13,5 @@ const UserSchema = new Schema(
 	{ timestamps: true }
 );
 
-const User = model('user', UserSchema);
+const User = mongoose.model('user', UserSchema);
 module.exports = { User };
