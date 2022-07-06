@@ -29,7 +29,6 @@ try {
 				// user에 mongoose의 save메소드가 붙어서 이게 promise를 리턴함 -> await으로 받음. -> 다음줄.
 				await user.save();
 				return res.send({ user });
-
 				// users.push({ name: 'john doe', age: 40 });
 				// users.push({ name: req.body.name, age: req.body.age });
 				// return res.send({ success: true });
