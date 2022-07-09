@@ -52,10 +52,11 @@ userRouter.put('/:userId', async (req, res) => {
 		// const user = await User.findByIdAndUpdate(userId, { age, name }, { new: true });
 
 		// # v.2
-		console.log({ userBeforeEdit: user });
 		let user = await User.findById(userId);
+		console.log({ userBeforeEdit: user });
 		if (age) user.age = age;
 		if (name) user.name = name;
+		console.log({ userAfterEdit: user });
 		await user.save();
 
 		return res.send({ user });
