@@ -44,20 +44,23 @@ userRouter.put('/:userId', async (req, res) => {
 		if (age && typeof age !== 'number') return res.status(400).send({ err: 'age must be a number' });
 		if (name && typeof name.first !== 'string' && typeof name.last !== 'string')
 			return res.status(400).send({ err: 'first and last name must be strings' });
+
+		// # v.1 - 단순한 데이터 수정 + 빠름.
 		// let updateBody = {};
 		// 수업에서는 빈 부분을 postman에 PUT req 시, 빈 부분이 null 값을 받으나, 현재 버전 기준에서는 이런 오류가 발생하지 않는다. 아래 코드는 이전버전에 제한되는건가?
 		// if (age) updateBody.age = age;
 		// if (name) updateBody.name = name;
-
 		// const user = await User.findByIdAndUpdate(userId, { age, name }, { new: true });
 
-		// # v.2
+		// # v.2 - 데이터 구조가 복잡하거나 여러 인스턴스를 복합적으로 처리해야할 경우
 		let user = await User.findById(userId);
 		console.log({ userBeforeEdit: user });
 		if (age) user.age = age;
 		if (name) user.name = name;
 		console.log({ userAfterEdit: user });
 		await user.save();
+
+		// 분기 끝
 
 		return res.send({ user });
 	} catch (err) {
