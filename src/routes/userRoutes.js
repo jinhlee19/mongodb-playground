@@ -58,6 +58,7 @@ userRouter.put('/:userId', async (req, res) => {
 		if (age) user.age = age;
 		if (name) user.name = name;
 		console.log({ userAfterEdit: user });
+
 		await user.save();
 
 		// 분기 끝
