@@ -1,8 +1,8 @@
 const { Router } = require('express');
-const commentRouter = Router({ mergeParams: true });
+const commentRouter = Router();
 const { Comment } = require('../models/Comment');
 
-commentRouter.post('/:commentId', async (req, res) => {
+commentRouter.post('/', async (req, res) => {
 	return res.send(req.params);
 });
 commentRouter.get('/');

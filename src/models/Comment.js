@@ -1,10 +1,14 @@
-const mongoose = require('mongoose');
-
 const {
 	Schema,
 	model,
 	Types: { ObjectId },
 } = require('mongoose');
+
+// const {
+// 	Schema,
+// 	model,
+// 	Types: { ObjectId },
+// } = require('mongoose');
 
 const CommentSchema = new Schema(
 	{
@@ -15,6 +19,6 @@ const CommentSchema = new Schema(
 	{ timestamps: true }
 );
 
-const Comment = model('comment', 'CommentSchema');
+const Comment = model('comment', CommentSchema);
 
 module.export = { Comment };
