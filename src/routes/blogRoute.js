@@ -6,7 +6,7 @@ const { User } = require('../models/User');
 const { Blog } = require('../models/Blog');
 const { commentRouter } = require('./commentRoute');
 
-// 이건 server.js에 있는걸 대체하고싶을 경우 (또는 blogRoute파일에 몰아넣고 싶을 경우)
+// 이건 server.js에 있는걸 대체하고싶을 경우 (또는 blogRoute파일에 몰아넣고 싶을 경우) 어차피 블로그 하위이니깐
 // blogRouter.use('/:blogId/comment', commentRouter);
 
 blogRouter.post('/', async (req, res) => {
