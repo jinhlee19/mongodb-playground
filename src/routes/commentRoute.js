@@ -1,8 +1,10 @@
 const { Router } = require('express');
-const commentRouter = Router();
+const commentRouter = Router({ mergeParams: true });
 const { Comment } = require('../models/Comment');
 
-commentRouter.post('/', async (req, res) => res.send(req.params));
+commentRouter.post('/:commentId', async (req, res) => {
+	return res.send(req.params);
+});
 commentRouter.get('/');
 
 module.exports = {
