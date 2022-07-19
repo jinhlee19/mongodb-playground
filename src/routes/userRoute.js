@@ -54,10 +54,10 @@ userRouter.put('/:userId', async (req, res) => {
 
 		// # v.2 - 데이터 구조가 복잡하거나 여러 인스턴스를 복합적으로 처리해야할 경우
 		let user = await User.findById(userId);
-		console.log({ userBeforeEdit: user });
+		// console.log({ userBeforeEdit: user });
 		if (age) user.age = age;
 		if (name) user.name = name;
-		console.log({ userAfterEdit: user });
+		// console.log({ userAfterEdit: user });
 
 		await user.save();
 
@@ -88,7 +88,7 @@ userRouter.put('/:userId', async (req, res) => {
 
 userRouter.post('/', async (req, res) => {
 	try {
-		console.log(req.body);
+		// console.log(req.body);
 		const { username, name } = req.body;
 		if (!username) return res.status(400).send({ err: 'username is required' });
 		if (!name || !name.first || !name.last)
