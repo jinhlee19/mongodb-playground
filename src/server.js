@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
-const { userRouter } = require('./routes/userRoute');
-const { blogRouter } = require('./routes/blogRoute');
-const { commentRouter } = require('./routes/commentRoute');
+const { userRouter, blogRouter, commentRouter } = require('./routes');
+// const { blogRouter } = require('./routes/blogRoute');
+// const { commentRouter } = require('./routes/commentRoute');
 
 const MONGO_URI =
 	'mongodb+srv://jinhlee19:hcfchJR1mlH9mkt5@mongodbtuts.53uls.mongodb.net/BlogService?retryWrites=true&w=majority';
