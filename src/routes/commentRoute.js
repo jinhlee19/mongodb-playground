@@ -32,7 +32,12 @@ commentRouter.post('/', async (req, res) => {
 	}
 	return res.send(req.params);
 });
-commentRouter.get('/');
+commentRouter.get('/', async (req, res) => {
+	const { blogId } = req.params;
+	if (!isValidObjectId(blogId)) return res.status(400).send({ err: 'blogId is required' });
+	const comment = await Comment.find({ blog: blogId });
+	return res.send({ comment });
+});
 
 module.exports = {
 	commentRouter,

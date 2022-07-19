@@ -71,11 +71,12 @@ blogRouter.put('/:blogId', async (req, res) => {
 blogRouter.patch('/:blogId/live', async (req, res) => {
 	try {
 		const { blogId } = req.params;
-		if (!isValidObjectId(blogId)) res.status(400).send({ err: 'blogId is invalid.' });
-		const { islive } = req.body;
-		if (typeof islive !== 'boolean') res.status(400).send({ err: 'islive is required.' });
+		if (!isValidObjectId(blogId)) return res.status(400).send({ err: 'blogId is invalid.' });
 
-		const blog = await Blog.findOneAndUpdate(blogId, { islive }, { new: true });
+		const { islive } = req.body;
+		if (typeof islive !== 'boolean') return res.status(400).send({ err: 'islive is required.' });
+
+		const blog = await Blog.findByIdAndUpdate(blogId, { islive }, { new: true });
 		return res.send({ blog });
 	} catch (err) {
 		console.log(err);
