@@ -4,6 +4,7 @@ const app = express();
 const { userRouter, blogRouter, commentRouter } = require('./routes');
 // const { blogRouter } = require('./routes/blogRoute');
 // const { commentRouter } = require('./routes/commentRoute');
+const { generateFakeData } = require('../faker');
 
 const MONGO_URI =
 	'mongodb+srv://jinhlee19:hcfchJR1mlH9mkt5@mongodbtuts.53uls.mongodb.net/BlogService?retryWrites=true&w=majority';
@@ -11,7 +12,9 @@ const MONGO_URI =
 const server = async () => {
 	try {
 		await mongoose.connect(MONGO_URI);
-		mongoose.set('debug', true);
+		// mongoose.set('debug', true);
+		// generateFakeData(100, 10, 300);
+
 		console.log('MongoDB has Connected');
 		app.use(express.json());
 

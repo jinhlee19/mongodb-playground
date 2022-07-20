@@ -19,13 +19,14 @@ generateFakeData = async (userCount, blogsPerUser, commentsPerUser) => {
 					first: faker.name.firstName(),
 					last: faker.name.lastName(),
 				},
+				// 10~60
 				age: 10 + parseInt(Math.random() * 50),
 				email: faker.internet.email(),
 			})
 		);
 	}
 
-	users.map(async user => {
+	users.map(user => {
 		for (let i = 0; i < blogsPerUser; i++) {
 			blogs.push(
 				new Blog({
