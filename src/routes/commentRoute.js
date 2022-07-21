@@ -17,7 +17,7 @@ commentRouter.post('/', async (req, res) => {
 
 		// const blog = await Blog.findByIdAndUpdate(blogId);
 		// const user = await User.findByIdAndUpdate(userId);
-		// 위를 아래로
+		// 위를 아래로 -> promise를 통해서 한꺼번에 처리
 		const [blog, user] = await Promise.all([Blog.findByIdAndUpdate(blogId), User.findByIdAndUpdate(userId)]);
 
 		console.log(blog, user);
