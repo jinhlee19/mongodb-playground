@@ -42,6 +42,7 @@ generateFakeData = async (userCount, blogsPerUser, commentsPerUser) => {
 	users.map(user => {
 		for (let i = 0; i < commentsPerUser; i++) {
 			let index = Math.floor(Math.random() * blogs.length);
+
 			comments.push(
 				new Comment({
 					content: faker.lorem.sentence(),
