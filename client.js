@@ -3,8 +3,10 @@ console.log('client code running');
 const axios = require('axios');
 
 const test = async () => {
-	const response = await axios.get('http://localhost:3000/blog');
-	console.log(response);
+	const {
+		data: { blogs },
+	} = await axios.get('http://localhost:3000/blog');
+	console.log(blogs.length, blogs[0]);
 };
 
 test();
