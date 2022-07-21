@@ -5,6 +5,7 @@ const axios = require('axios');
 const URI = 'http://localhost:3000';
 
 const test = async () => {
+	console.time('loading time: ');
 	let {
 		data: { blogs },
 	} = await axios.get(`${URI}/blog`);
@@ -30,7 +31,20 @@ const test = async () => {
 			return blog;
 		})
 	);
-	console.dir(blogs[0], { depth: 10 });
+	// console.dir(blogs[0], { depth: 10 });
+	console.timeEnd('loading time: ');
 };
 
-test();
+// test();
+
+const testGroup = async () => {
+	await test();
+	await test();
+	await test();
+	await test();
+	await test();
+	await test();
+	await test();
+};
+testGroup();
+// 200ms 이하가 좋은데 내맥은 거의 3초 나옴.
