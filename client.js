@@ -17,11 +17,20 @@ const test = async () => {
 				axios.get(`${URI}/blog/${blog._id}/comment`),
 			]);
 			blog.user = res1.data.user;
-			blog.comments = res2.data.comments;
+			// blog.comments = res2.data.comments;
+			blog.comments = await Promise.all(
+				res2.data.comments.map(async comment => {
+					const {
+						data: { user },
+					} = (comment.user = await axios.get(`${URI}/user/${comment.user}`));
+					comment.user = user;
+					return comment;
+				})
+			);
 			return blog;
 		})
 	);
-	console.log(blogs[0]);
+	console.dir(blogs[0], { depth: 10 });
 };
 
 test();
