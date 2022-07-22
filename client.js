@@ -9,9 +9,9 @@ const test = async () => {
 	let {
 		data: { blogs },
 	} = await axios.get(`${URI}/blog`);
-	console.log(blogs[3]);
+	console.dir(blogs[3], { depth: 10 });
+	// console.dir(blogs[3]);
 	// Promise.all을 통해서 await 한꺼번에 처리
-
 	// blogs = await Promise.all(
 	// 	blogs.map(async blog => {
 	// 		// 이부분은 순차적으로 처리
