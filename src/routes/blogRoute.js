@@ -28,7 +28,7 @@ blogRouter.post('/', async (req, res) => {
 
 blogRouter.get('/', async (req, res) => {
 	try {
-		const blogs = await Blog.find({}).limit(20);
+		let blogs = await Blog.find({}).limit(20).populate({ path: 'user' }, { path: 'comments' });
 		return res.send({ blogs });
 	} catch (err) {
 		console.log(err);

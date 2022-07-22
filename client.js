@@ -9,42 +9,42 @@ const test = async () => {
 	let {
 		data: { blogs },
 	} = await axios.get(`${URI}/blog`);
+	console.log(blogs[3]);
 	// Promise.all을 통해서 await 한꺼번에 처리
-	blogs = await Promise.all(
-		blogs.map(async blog => {
-			// 이부분은 순차적으로 처리
-			const [res1, res2] = await Promise.all([
-				axios.get(`${URI}/user/${blog.user}`),
-				axios.get(`${URI}/blog/${blog._id}/comment`),
-			]);
-			blog.user = res1.data.user;
-			// blog.comments = res2.data.comments;
-			blog.comments = await Promise.all(
-				res2.data.comments.map(async comment => {
-					const {
-						data: { user },
-					} = (comment.user = await axios.get(`${URI}/user/${comment.user}`));
-					comment.user = user;
-					return comment;
-				})
-			);
-			return blog;
-		})
-	);
+
+	// blogs = await Promise.all(
+	// 	blogs.map(async blog => {
+	// 		// 이부분은 순차적으로 처리
+	// 		const [res1, res2] = await Promise.all([
+	// 			axios.get(`${URI}/user/${blog.user}`),
+	// 			axios.get(`${URI}/blog/${blog._id}/comment`),
+	// 		]);
+	// 		blog.user = res1.data.user;
+	// 		// blog.comments = res2.data.comments;
+	// 		blog.comments = await Promise.all(
+	// 			res2.data.comments.map(async comment => {
+	// 				const {
+	// 					data: { user },
+	// 				} = (comment.user = await axios.get(`${URI}/user/${comment.user}`));
+	// 				comment.user = user;
+	// 				return comment;
+	// 			})
+	// 		);
+	// 		return blog;
+	// 	})
+	// );
+
 	// console.dir(blogs[0], { depth: 10 });
 	console.timeEnd('loading time: ');
 };
 
-// test();
-
 const testGroup = async () => {
 	await test();
-	await test();
-	await test();
-	await test();
-	await test();
-	await test();
-	await test();
+	// await test();
+	// await test();
+	// await test();
+	// await test();
+	// await test();
+	// await test();
 };
 testGroup();
-// 200ms 이하가 좋은데 내맥은 거의 3초 나옴.
