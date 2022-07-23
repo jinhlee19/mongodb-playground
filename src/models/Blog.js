@@ -6,7 +6,15 @@ const BlogSchema = new Schema(
 		content: { type: String, required: true },
 		islive: { type: Boolean, required: true, default: false },
 		// 이 user라는 id(ObjectId)는 user(ref) 모델에 해당되는 user id이다.
-		user: { type: Types.ObjectId, required: true, ref: 'user' },
+		// user: { type: Types.ObjectId, required: true, ref: 'user' },
+		user: {
+			_id: { type: Types.ObjectId, required: true, ref: 'user' },
+			username: { type: String, required: true },
+			name: {
+				first: { type: String, require: true },
+				last: { type: String, require: true },
+			},
+		},
 		// comments: [{ type: Types.ObjectId, require: true, ref: 'comment' }],
 	}
 	// { timestamps: true }

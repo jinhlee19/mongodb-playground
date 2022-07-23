@@ -9,7 +9,7 @@ const test = async () => {
 	let {
 		data: { blogs },
 	} = await axios.get(`${URI}/blog`);
-	console.dir(blogs[3], { depth: 10 });
+	// console.dir(blogs[3], { depth: 10 });
 	// console.dir(blogs[3]);
 	// Promise.all을 통해서 await 한꺼번에 처리
 	// blogs = await Promise.all(
@@ -34,17 +34,11 @@ const test = async () => {
 	// 	})
 	// );
 
-	// console.dir(blogs[0], { depth: 10 });
+	console.dir(blogs[0], { depth: 10 });
 	console.timeEnd('loading time: ');
 };
 
 const testGroup = async () => {
 	await test();
-	// await test();
-	// await test();
-	// await test();
-	// await test();
-	// await test();
-	// await test();
 };
 testGroup();
