@@ -35,7 +35,7 @@ commentRouter.post('/', async (req, res) => {
 commentRouter.get('/', async (req, res) => {
 	const { blogId } = req.params;
 	if (!isValidObjectId(blogId)) return res.status(400).send({ err: 'blogId is required' });
-	const comments = await Comment.find({ blog: blogId }).limit(1);
+	const comments = await Comment.find({ blog: blogId }).limit(4);
 	return res.send({ comments });
 });
 

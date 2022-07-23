@@ -8,7 +8,7 @@ const CommentSchema = new Schema(
 	{
 		content: { type: String, require: true },
 		user: { type: ObjectId, require: true, ref: 'user' },
-		blog: { type: ObjectId, require: true, ref: 'blog' },
+		// blog: { type: ObjectId, require: true, ref: 'blog' },
 	},
 	{ timestamps: true }
 );

@@ -1,4 +1,5 @@
 const { Schema, model, Types } = require('mongoose');
+const { CommentSchema } = require('./Comment');
 
 const BlogSchema = new Schema(
 	{
@@ -16,18 +17,19 @@ const BlogSchema = new Schema(
 			},
 		},
 		// comments: [{ type: Types.ObjectId, require: true, ref: 'comment' }],
+		comments: [CommentSchema],
 	}
-	// { timestamps: true }
+	// ,{ timestamps: true }
 );
 
-BlogSchema.virtual('comments', {
-	ref: 'comment',
-	localField: '_id',
-	foreignField: 'blog',
-});
+// BlogSchema.virtual('comments', {
+// 	ref: 'comment',
+// 	localField: '_id',
+// 	foreignField: 'blog',
+// });
 
-BlogSchema.set('toObject', { virtuals: true });
-BlogSchema.set('toJSON', { virtuals: true });
+// BlogSchema.set('toObject', { virtuals: true });
+// BlogSchema.set('toJSON', { virtuals: true });
 // BlogSchema.set('timestamps', true);
 
 const Blog = model('blog', BlogSchema);
